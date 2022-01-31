@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>New Card</title>
+    {% include "bootstrap.html" %}
+    <style>
+		body {
+				background-color: #a8aaad;
+			}
+    </style>
+</head>
+
+<body>
+    {% include "navbar.html" %}
+    <div class="jumbotron" style="background-color: #0c2245; color: white;" >
+        <h1>Create New Card</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form_data.as_table }}
+                <tr>
+                    <td></td>
+                    <td>
+                        <a href="{% url 'learner:dashboard' %}" class="btn btn-secondary">Cancel</a>
+                        <input type="submit" class="btn btn-primary" name="add" value="Create Card">
+                    </td>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

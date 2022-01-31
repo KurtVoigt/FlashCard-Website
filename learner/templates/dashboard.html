@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--Dashboard, displays all decks into bootstrap cards in the bootstrap grid-->
+<html>
+
+<head>
+	{% include "bootstrap.html" %}
+	<!-- load static -->
+	<!--link rel="stylesheet" href="static 'common.css' "/-->
+	<style>
+		body {
+			background-color: #a8aaad;
+		}
+
+		.card {
+			background-color: #0c2245;
+			color: white;
+		}
+
+		.row {
+			padding: 1em;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content:left;
+			gap: 1em;
+			background-color: #343a40;
+		}
+		#buttonHolder{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	</style>
+</head>
+
+<body>
+	{% include "navbar.html" %}
+	<br>
+	<div id="buttonHolder">
+		<a href="{% url 'learner:deckAdd' %}" class="btn btn-dark" style="margin-bottom: 1em;">Create New Deck</a>
+	</div>
+	{% if not decks %}
+	<p>There are no decks to display, try creating one!</p>
+	{% else %}
+	<div class="row">
+		{% for row in decks %}
+
+
+		<div class="card" style="width: 18rem;">
+			<div class="card-body">
+				<h5 class="card-title">{{ row.name }} </h5>
+				<h6 class="card-subtitle mb-2 text-muted">{{ row.weight }}</h6>
+				<p>{{ row.description }}</p>
+				<a href="{% url 'learner:cardAdd' row.id %}" class="card-link">Add Card</a>
+				<a href="{% url 'learner:deckDelete' row.id %}" class="card-link">Delete Deck</a>
+				<a href="{% url 'learner:deckReview' row.id %}" class="card-link">Review Deck</a>
+			</div>
+		</div>
+
+
+		{% endfor %}
+	</div>
+
+	{% endif %}
+
+	<script>
+		var weights = document.getElementsByClassName("card-subtitle mb-2 text-muted");
+		console.log(parseFloat(weights[0].innerHTML));
+		for (let i = 0; i < weights.length; i++) {
+			weight = parseFloat(weights[i].innerHTML)
+			if (weight <= .6) {
+				weights[i].innerHTML = '<p style="color: yellow;">Urgency:Medium</p>'
+			}
+			if (weight < .3) {
+				weights[i].innerHTML = '<p style="color: red;">Urgency:High</p>'
+			}
+			if (weight > .6) {
+				weights[i].innerHTML = '<p style="color: green;">Urgency:Low</p>'
+			}
+		}
+	</script>
+</body>
+
+</html>

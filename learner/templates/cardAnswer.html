@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "bootstrap.html" %}
+    <style>
+    .container {
+		margin: auto;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		  text-align: center;
+	}
+	
+	body {
+			background-color: #a8aaad;
+		}
+    
+    </style>
+</head>
+
+<body>
+	{% include "navbar.html" %}
+
+    <div class="container">
+        <div style="background-color: #0c2245; color: white;" class="jumbotron">
+            <h1>{{ card.answer }} </h1>
+            <br>
+            <h3>{{ card.sentence }} </h3>
+            <br>
+            <p>How do you feel about your knowledge of this card?</p>
+            <form method="POST">
+				{% csrf_token %}
+				<input type="submit" class="btn btn-secondary" name="great" value = "Great">
+				<input type="submit" class="btn btn-secondary" name="good" value = "Good">
+				<input type="submit" class="btn btn-secondary" name="neutral" value = "Neutral">
+				<input type="submit" class="btn btn-secondary" name="bad" value = "Bad">
+				<input type="submit" class="btn btn-secondary" name="terrible" value = "Terrible">            
+			</form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

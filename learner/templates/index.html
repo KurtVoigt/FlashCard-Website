@@ -1,0 +1,78 @@
+ <!DOCTYPE html>
+ <html>
+<head>
+    {% load static %}
+    <!--link rel="stylesheet" href="static 'common.css' " /-->
+    {% include "bootstrap.html" %}
+	<style>
+		.card {
+				background-color: #0c2245; 
+				color: white;
+		}
+		.jumbotron {
+			background-color:#0c2245; color:white;
+		}
+		body {
+				background-color: #a8aaad;
+		}
+		
+
+	</style>
+</head>
+
+	{% include "navbar.html" %}
+<body>
+<div class="jumbotron" style="text-align:center;">
+  <h1 class="display-4" >Lingo</h1>
+  <p class="lead">A Flashcard Application that keeps track of what you need to learn</p>
+  </p>
+</div>
+
+<div id="accordion" >
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-outline-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          What it is:
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        Lingo is a flashcard application which will strive to keep you on top of what you need to review. Create your own decks of material and Lingo will keep a score of your knowledge levels for these decks. Your knowledge level will decay over time, and you will be able to see which decks are in most need of review!
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-outline-light collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          How it works:
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+		  To start off, you need to create a deck. You then can create cards for this deck. Fill the cards with your question(what you would see on the front side of the card) an answer that you want to associate to this card and an optional example sentence you would like to see with the question.
+		  Your Dashboard will display all of your created decks, and the urgency with which they must be reviewed. Click on the deck to review it.
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-outline-light collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Get started:
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+		  First, <a href="{% url 'learner:join' %}">create an account</a>, after you are logged in, you can start by <a href="{% url 'learner:deckAdd' %}">creating a deck</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
